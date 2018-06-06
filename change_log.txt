@@ -1,0 +1,366 @@
+--------------------------
+Done
+--------------------------
+  STARTED Add new commandline option to FLOW=X to enable XON/XOFF mode
+2.0.0.71
+  Default send file renamed from capture.txt to send.txt
+2.0.0.70
+  Port Scanning has been completely changed for WinNT and above.
+    WinNT+ :Ports are not scanned, they are loaded from registry to comport
+              combobox in form "4 = \VCP0". Sorted by com number. No longer shows
+              scanports form.
+              The "scanports" commandline parameter won't be needed now, as
+              bluetooth ports don't cause delays
+    WinME- :Scanned by opening the same as before.
+    Please report any problems especially on old versions of Windows (pre XP eg Win98)
+    
+  When a port of style \VCP doesn't exist, it no longer tries it as telnet port
+2.0.0.69
+  Fix to pass quoted strings on command line through to FIRST instance
+  No longer shows Spy driver donate dialog after driver installation.
+  Change various send string drop downs to use TerminalHex font to display all 8 bit values
+  added printerport driver files to dlportio.dll install section
+
+2.0.0.68   - Interim release for Steve Mayall
+  Mask MSB added
+  Work begun on hexcsv formatting
+2.0.0.67
+  Make data triggers work in stand-alone mode to make testing easier. (previously only in ActiveX mode)
+  Improve I2C scan to use ":" to make more reliable scanning smbus devices with timeout
+2.0.0.66
+  Fix error box from registry key reads on some systems
+  Added HEXCSV commandline param to set the format string
+  Change timing of scanports form display - seems to have sped up scanning
+2.0.0.65
+  Virtual Comports (USB): Comport can be given using Key instead of the com number.
+  The key names are in the registry list of comm devices at HKLM\HARDWARE\DEVICEMAP\SERIALCOMM
+          eg an I2C2PC adaptor will be \VCP0, regardless of which port it is attached to
+  Display the port registry entries on the scanports dialog...
+  HEXCSV2DEC commandline utility added to Realterm installer
+  HexCSV formatted display mode begun, not working yet.
+  Add Channel to MAX127 I2C ADC control, fix rang&sign bits
+  Add RSS news link to About box
+  Add DataTriggerSet routine to setup trigger conditions from COM/ActX interface
+  Remove obsolete KCDXO tab and code
+  Splitting I2C support routines into separate unit
+  add windowsplatform to aboutbox
+  add INSTALL parameter for installer to use to display help, news etc after installation
+
+2.0.0.64
+  Add COLOR commandline parameter to set terminal colors
+  Caption is now also used to set the title displayed on startbar when minimised
+  lengthen tooltip time, by request 2.5s -> 3.5s
+  Added I2C Scan Bus function to I2C tab.
+  Added I2C Control Register support
+
+2.0.0.63
+  Add a Sync Match Counter to "Binary Sync Chars".
+    -Also uses data trigger color in (yellow) TrayIcon for a few seconds
+  add version info to aboutbox 
+2.0.0.62
+  Fix double counting of incoming chars. (disables routine associated with asc7511)
+  Fix SPY mode not displaying char(0)
+  Added BitBashPins box to I2CMisc tab for open drain bashing of all port pins.
+  Added new ActiveX props: CaptureAsHex
+    As activeX lib has changed may need to unregister and re-register
+  Tried translate again - still errors.  
+2.0.0.61
+  Commandline parser changed (but not heavily tested)
+    - quotes in parameters are now OK
+    - accepts leading - or / before parameters
+  SendStr and SendNum can be called repeatedly to push the strings into the
+         SendString combo-boxes so they can be pre-populated
+2.0.0.60
+  Improve Bicolor led display test routine.
+  When port is closed by button, Terminal is enabled so scrollback continues to work
+  Added Checksum8 and Checksum16 to Send CRC options
+  Help commandline option now runs help
+2.0.0.59
+  Fixed Matlab format TimeStamp values.
+2.0.0.58
+  Added SCROLLBACK commandline parameter
+  Fixed Scanport operation when port is specified, for quick reliable startup.
+    - if PORT is set on command line, don't scan for ports, unless scanports also set on command line
+2.0.0.57
+  Add new links to about box: Help forum, ChangeLog, Examples
+  Added a button to bring up the popup menu to make it easier to find.
+2.0.0.56
+  Seem to have fixed "no receive chars in terminal" problem" when start up port does not exist.
+2.0.0.55
+  Now uses FirstAvailablePort (not com1) to open. This is for laptops without COM1
+  Consequence is that I now do search com1-4 for 1st port if scanports=0
+  Hopefully will help with the terminal doesn't work problem.
+  Temporarily added Enable Terminal button to MISC tab for debugging (didn't help)
+2.0.0.54
+  Restore binary sync with AND and XOR fields
+  Move HexEmulator code into separate module
+  Add Leading Sync option, but only works for 1 char sync ....
+2.0.0.53
+  Add Readme and Changelog to Realterm shortcuts
+  fixed starting minimised in 2.0.0.52
+  Improve Scanports dialog slightly. Now brings up a message box to confirm abort scanning if too slow.
+2.0.0.52
+  Fix for crash when using FIRST commandline parameter to send to running instance
+  stop form flashing up when using FIRST commandline parameter to send to running instance
+  Many more examples (installer script fixed)
+2.0.0.51
+  Try to fix EBAUD/EFLOW not correctly activated after being set from command line
+2.0.0.50
+  Add EFLOW commandline option
+  Add Test button for M5451 LED display modules
+  Add color checkbox for M5451 LED display modules
+2.0.0.49
+  Add Send^C and Send Break items to rightclick menu
+  Fix to cope with SCANPORTS=0 on commandline
+  **Very ODD** ctrl+C has started working from the keyboard in the terminal. Also BREAK key sends ^C now
+  May remove the ^C menu item in future if this is generally true.
+2.0.0.48
+  Add PCA9545 control to I2C-2 tab to support new MUX3 pcb
+2.0.0.47
+  Add CRC8 algorithms (smbus & dallas 1 wire) to send tab
+  Added Telnet/Raw radio buttons for Echo port. (Changed code on main port also)
+  Working on WaitForDataTrigger
+  BlueSmirf on misc tab:
+    - Fix baud rate setting command
+    - add query baud button
+  Clear LineError light after 1 sec. Leaves state on hint until double click on "Error" label
+  BaudRate setting:
+    -Added hidden BaudMultiplier drop down to help with high baud rates on 950 uarts
+    -trap error message during (invalid) baud rate setting to give more informative message (tested on WinXP)
+  Update BL301 controls on I2C-2 tab for current commands
+  Merge sboyd changes to AWASCII module. Should have no effect on Realterm.
+
+2.0.0.46
+  Timestamping in capture file working (user feedback needed about perferred YMD format)
+  Capture-as hex working
+  statusbar toggles to show longhints
+  disable Freeze button (until it is fixed)
+  spinning icon extended to yellow corner for data-triggers
+  added Events tab, which is hidden except when started as activeX server
+
+2.0.0.45   ***Last version before activeX type library is extended ***
+  Add Terminal Columns spinedit on display tab
+  Add warning if try to capture when port is closed
+  ActiveX Callback events
+    -OnCaptureCount (called once only when thresh crossed. Only comes from direct Capture)
+    -OnCaptureStop  (both will be called if there is a count threshold)
+    -OnTimer: This is a dedicated timer for generating periodic callbacks.
+    - Control on Misc tab to manually send events to help client code testing. Not gated by Enables, so always sent
+    - update Matlab example to show events
+  First version compiled on new PC, For proven version use 2.0.0.43
+  Donate button
+  add cancel button to form close dialog when in spy mode
+  Installer changes
+    -rename dlportio installer to install_dlportio.exe
+    -Installer for SpyMode drivers available to project donors.
+
+2.0.0.43    **This is a well tested and stable version**
+  Change Capture to try and fix reported Div0 errors
+  Add Max127 I2C read
+2.0.0.42
+commandline option "echo" with no further data crashes (was expecting "echo=<port>"
+  now will accept nothing OK
+Change to combobox history list routine that is widely used. Should have no side-effects.
+2.0.0.41
+Fixes for multi-copy COM automation:
+  Creates multiple instances instead of one single instance again (like 1.99.XX)
+  Automation opens it with ports closed again (like 1.99.XX)
+  Caption now "Realterm: Automation server" for automation instances
+  Suppresses port scanning when started as ActiveX/COM server
+2.0.0.40
+Added LF button to send tab
+2.0.0.39
+Fixed Font selector to change size and style correctly
+2.0.0.38
+fix to M5451 conversions so that "-1.23" doesn't light segment in digit 5
+2.0.0.37
+Added Float4 single-precision floating point display
+2.0.0.36
+Added Binary and Nibble display modes. One of these will be dropped in future
+version, probably "binary"
+2.0.0.35
+Swapped trace and log control positions to put emphasis on log files.
+2.0.0.34
+Added some BlueSmirf bluetooth module commands to misc tab
+Changed scanports commandline option to specify last port number to scan for.
+  This makes it easier to limit the time taken when bluetooth is present without
+  just disabling it
+Add ScanPort dialog when it is taking too long.
+Change port scanning to scan upward to allow aborting
+
+2.0.0.33
+Indirect capture opens files for shared-reading during capture
+   (ie capture while displaying chars in terminal)
+   Modified AdTrmEmu.pas for this
+F1 key now brings up help.
+Update aboutbox
+
+2.0.0.32
+cleaned up activeX TLB to remove warnings
+Added Version property to activeX
+
+2.0.0.31
+Added controls to set Trace and log file names
+Added clear and dump buttons for trace/log
+Now capture,send correctly append to combobox
+tabsheet send correctly selected during send
+Only show Binary sync in hex modes where it is active
+Added active X method "AddCannedSendString" that pushes strings into the sendstring combo boxes
+
+2.0.0.30
+Added DTR&RTS activeX fields
+Fixed Read Dallas1 wire ID
+Added PCA9544 I2C device
+removed translate component due to ntdll errors
+Added CAPDIRECT commandline and activeX
+hints copied into status panel
+
+
+2.0.0.27
+added scrollback rows field
+fixed commandline LFNL
+hack to remove "buffer empty" error during capture. Breakss BL301 and ASC7511 reading
+Added 1-wire temp read button for DS1820 (untested)
+I2C link now sets RTS/CTS
+Warning in status panel about no handshaking
+panels swapped about
+attempt to use long hints in panel (not working yet)
+2.0.0.26
+Added CTS,DSR,DCD,Break lights to Echoport tab to enhance monitor mode.
+Correctly enable status lights on echo port
+fixed monitor assert failure in echo monitor mode
+2.0.0.24
+stretched Pin Description memo to fit properly
+2.0.0.23
+Added buttons for SPI CS pin control
+added and removed mod for comserv startup problem on winxp
+spymode bleat screen
+2.0.0.21
+Added Andigilog aSC7511 I2C support
+2.0.0.20
+Now scrollbars will appear when realterm is resized so terminal window is smaller than number of lines
+made ascii edit into combo-box, and added regular expansion
+BL301 I2C support
+new I2CADD command line parameter to set I2C address
+2.0.0.19
+Added I2C buttons to "write then read" to make it easier to read eeproms etc.
+Fixed "invert data" and char counting in ASCII emulator
+Char count now only counts chars from the port, and ignores chars being sent in Half duplex
+EOL char for Sendfile EOL delay is now LF not CR
+2.0.0.18
+Add humidity sensor support to I2C Misc tab
+Added I2CMisc tab for non-i2c chips
+Moved Sendfile to Capture tab to free up space on send tab
+commandline setting of emulator doesn't work
+2.0.0.17
+New installer based on NSI. Now installs fonts
+Colorise spy mode
+proper error messages when opening port
+no rx when port already open while opening a second instance
+clear terminal when changing port (w/ checkbox)
+paste to port/copy from port have some issues
+scrollback
+grayed unused port options
+F1 help launches web browser
+fixed bug that meant no display of control chars after switching back. (Emulator_ASCII is unused now)
+spy mode check that port is closed before trying to enter spy mode. Or warn
+changed spy mode to use teta. Works properly now
+fixed: first locks error (still flashes but works.
+fixed: capquit error
+active scripting examples
+enumerating all comports can be disabled, and run (actx control?)
+recieving repeated FF or FF's lost on TCP (cmdline and actx?)
+CAPTION doesn't work from command line...
+fix repeated file send and send messages
+sendfile delay control can go negative
+sendfile delay locks w/ big numbers
+sendfile repeats work properly
+exception when exiting via COM or commandline interface
+FLOW=3 RS485 mode can be set from command line now
+
+------------------------------------------
+Bugs
+------------------------------------------
+Scrollback command line option does not work. (seem to at 2.0.0
+help commandline option errors when port scan is slow.
+Binary sync mode
+  -doesn't seem to update correctly until after mode changed back to ascii then back to hex
+  -perhaps should be active in ascii, but not ansi
+  -and masking doesn't seem to work right. Check. Correct or improve explanation
+Freeze button no longer working. (works in 1.99.16). Code unchanged. (bug in APRO)
+Reported RS485 problems. Not checked, but is a known windows bug due to slow RTS timing (see apro forums)
+
+------------------------------------------
+Not really faults
+------------------------------------------
+showallemulator shows BS as triangle (no: ^H doesn't send BS)
+
+-----------------
+ToDo .... maybe
+-----------------
+Spy mode Capture file
+Installer improvements:
+
+  -run it if user chooses to install
+  -or improve installer wording so user knows to install separately
+  -add all modified components
+
+ability to launch from com interface then detach and leave running.
+extend special font with larger sizes
+update to latest async port components, and merge my changes back to SF.
+
+RFC2217 remote port control function
+
+modbus packets, ascii? bin?
+CRC's
+  -more generally add a range of checksum/crc's: CK8,CK16,ModbusAscii,ModbusCRC,CRC16,CRC32
+translations
+command file
+general printer port toggle controls
+explicit printer port address
+Tidy up dlportio -add routines, merge d3 and d4 versions
+redundant color setting methods
+clean up SendString mess
+hex getting for I2C
+getstring or getline for activeX interface
+autosize for winxp, autosizing screen at start -  doesn't seem to be needed now
+crc packet sync
+
+translation support
+autobaudrate detection scheme
+linedelay and chardelay are longer than supposed to be, especially for short delays
+Kylix version.
+
+use canned strings. (implemented from Actx, but not commandline)
+easy way to add i2c chip addresses. (done - AddCannedStrings)
+Add CRLF key       eg shift+return
+SENDDLY commandline does not set SENDREPS=0 like documentation.
+  As it has been commented out for reasons forgotten, I am a bit loathe to restore it.
+
+--------------------------
+Feature Requests
+--------------------------
+Spy mode capture file
+Resize changes rows/cols
+It would very useful to add command line options for font and font size choose on program start.
+
+It would be nice if the sync chars would allow random length "Data Frames" when set to "Single", without the data frame size speifically set. I.E. header byte set to
+AND $80 (MSB set) and variable length messages to
+follow.
+
+Delay on repeats of the Send comboboxes
+Key for Break and for ^C
+handle - and -- in commandline arguments ie -scanports=2
+fix scanports to abort properly or to run in background, and to display dialog after mainform is visible.
+Send multiple files from command line
+Delays for other send options and normal terminal
+
+
+A "sync feature" that will allow closing and re-opening the capture files with an incremented name.
+The plot files from the scope are HPGL and have a known ending sequence.  So it
+would be nice to start the capture, and wait for the stream to come from the
+, including its termination set, then close the current capture file, and start
+a new one automatically.  Later I can go in and print out the capture files directly.
+This would make Realterm a standalone, rather than embedding it in a second pgm.
+
+
